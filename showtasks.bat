@@ -14,4 +14,4 @@ echo There were errors
 
 :end
 echo.
-echo Work is finisheda
+echo Work is finished
