@@ -1,8 +1,8 @@
 plugins {
 	id 'org.springframework.boot' version '2.5.4'
 	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
-	id 'java'
-//	id 'war'
+//	id 'java'
+	id 'war'
 }
 
 jar {
@@ -40,7 +40,7 @@ dependencies {
 
 
 
-//	providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
+	providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
 }
 
 test {
