@@ -2,7 +2,6 @@ package com.crud.tasks.service;
 
 import com.crud.tasks.domain.Task;
 import com.crud.tasks.repository.TaskRepository;
-import jdk.dynalink.linker.LinkerServices;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -30,6 +29,4 @@ public class DbService {
     public void deleteTask (final Long id) {
         repository.deleteById(id);
     }
-
-
 }
