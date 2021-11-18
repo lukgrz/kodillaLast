@@ -59,9 +59,7 @@ public class TrelloServiceTestSuite {
         //Given
         TrelloCardDto trelloCardDto = new TrelloCardDto("name", "descrition", "top", "1");
         TrelloDto trelloDto = new TrelloDto(1, 1);
-        AttachmentsByTypeDto attachmentsByTypeDto = new AttachmentsByTypeDto(trelloDto);
-        BadgesDto badgesDto = new BadgesDto(1, attachmentsByTypeDto);
-        CreatedTrelloCardDto createdCardDto = new CreatedTrelloCardDto("id", "name", badgesDto, "url");
+        CreatedTrelloCardDto createdCardDto = new CreatedTrelloCardDto("id", "name", "url");
         when(trelloClient.createNewCard(trelloCardDto)).thenReturn(createdCardDto);
         when(adminConfig.getAdminMail()).thenReturn("mail@gmail.com");
         //When
@@ -71,8 +69,5 @@ public class TrelloServiceTestSuite {
         assertThat(theCard.getName()).isEqualTo("name");
         assertThat(theCard.getShortUrl()).isEqualTo("url");
         assertThat(createdCardDto.getName()).isEqualTo("name");
-        assertThat(theCard.getBadges().getVotes()).isEqualTo(1);
-        assertThat(theCard.getBadges().getAttachmentsByTypeDto().getTrelloDto().getCard()).isEqualTo(1);
-        assertThat(theCard.getBadges().getAttachmentsByTypeDto().getTrelloDto().getBoard()).isEqualTo(1);
     }
 }

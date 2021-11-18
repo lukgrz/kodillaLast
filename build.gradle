@@ -24,6 +24,7 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-mail'
 	runtimeOnly 'mysql:mysql-connector-java'
 //	runtimeOnly 'org.postgresql:postgresql'
+	testImplementation 'com.google.code.gson:gson'
 
 	testImplementation ('org.springframework.boot:spring-boot-starter-test') {
 		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
