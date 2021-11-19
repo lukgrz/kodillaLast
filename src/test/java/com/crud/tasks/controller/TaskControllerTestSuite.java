@@ -23,7 +23,7 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
 @SpringJUnitWebConfig
-@WebMvcTest (TaskController.class)
+@WebMvcTest(TaskController.class)
 public class TaskControllerTestSuite {
 
     @Autowired
@@ -64,8 +64,8 @@ public class TaskControllerTestSuite {
                 .perform(MockMvcRequestBuilders
                         .get("/v1/task/getTask")
                         .contentType(MediaType.APPLICATION_JSON)
-                        .param("taskId","1"))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.id",Matchers.is(1)))
+                        .param("taskId", "1"))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.id", Matchers.is(1)))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.title", Matchers.is("Test")))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.content", Matchers.is("Content")));
     }
@@ -77,16 +77,16 @@ public class TaskControllerTestSuite {
         mockMvc
                 .perform(MockMvcRequestBuilders
                         .delete("/v1/task/deleteTask")
-                        .param("taskId","1")
+                        .param("taskId", "1")
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(MockMvcResultMatchers.status().isOk());
     }
 
     @Test
-    public void shouldUpdateTask() throws Exception{
+    public void shouldUpdateTask() throws Exception {
         //Given
-        TaskDto taskDto = new TaskDto(1L,"Updated", "Content");
-        Task task = new Task(1L,"Updated", "Content");
+        TaskDto taskDto = new TaskDto(1L, "Updated", "Content");
+        Task task = new Task(1L, "Updated", "Content");
         when(taskMapper.mapToTask(any(TaskDto.class))).thenReturn(task);
         when(dbService.saveTask(any(Task.class))).thenReturn(task);
         when(taskMapper.mapToTaskDto(any(Task.class))).thenReturn(taskDto);
@@ -102,14 +102,14 @@ public class TaskControllerTestSuite {
                 .andExpect(MockMvcResultMatchers.status().is(200))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.id", Matchers.is(1)))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.title", Matchers.is("Updated")))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.content", Matchers.is("Content")))         ;
+                .andExpect(MockMvcResultMatchers.jsonPath("$.content", Matchers.is("Content")));
     }
 
     @Test
-    public void shouldCreateTask() throws Exception{
+    public void shouldCreateTask() throws Exception {
         //Given
-        TaskDto taskDto = new TaskDto(1L,"Updated", "Content");
-        Task task = new Task(1L,"Updated", "Content");
+        TaskDto taskDto = new TaskDto(1L, "Updated", "Content");
+        Task task = new Task(1L, "Updated", "Content");
         when(taskMapper.mapToTask(taskDto)).thenReturn(task);
         when(dbService.saveTask(task)).thenReturn(task);
         Gson gson = new Gson();

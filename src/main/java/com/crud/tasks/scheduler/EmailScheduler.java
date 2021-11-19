@@ -17,23 +17,23 @@ public class EmailScheduler {
     private final AdminConfig adminConfig;
     private static final String SUBJECT = "Tasks: Once a day email";
 
-    @Scheduled(fixedDelay = 10000)
-//    @Scheduled(cron = "0 0 10 * * *")
-    public void sendInformationEmail() {
-        long size = taskRepository.count();
-        String task;
-        if (size == 1) {
-                task = "task";
-        } else {
-            task = "tasks";
-        }
-        simpleEmailService.send(
-                new Mail(
-                        adminConfig.getAdminMail(),
-                        SUBJECT,
-                        "Currently in database you've got: " + size + " " + task,
-                        null
-                )
-        );
+//    @Scheduled(fixedDelay = 10000)
+@Scheduled(cron = "0 0 10 * * *")
+public void sendInformationEmail() {
+    long size = taskRepository.count();
+    String task;
+    if (size == 1) {
+        task = "task";
+    } else {
+        task = "tasks";
     }
+    simpleEmailService.send(
+            new Mail(
+                    adminConfig.getAdminMail(),
+                    SUBJECT,
+                    "Currently in database you've got: " + size + " " + task,
+                    null
+            )
+    );
+}
 }
