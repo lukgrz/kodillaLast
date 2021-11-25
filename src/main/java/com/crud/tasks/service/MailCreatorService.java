@@ -19,6 +19,24 @@ public class MailCreatorService {
     @Qualifier("templateEngine")
     private TemplateEngine templateEngine;
 
+    public String buildNumberOfTasksEmail(String message) {
+        List<String> functionality = new ArrayList<>();
+        functionality.add("You can manage your tasks");
+        functionality.add("Provides connection with Trello Account");
+        functionality.add("Application allows sending tasks to Trello");
+
+        Context context = new Context();
+        context.setVariable("preview", "DAILY REPORT");
+        context.setVariable("admin_config", adminConfig);
+        context.setVariable("message", message);
+        context.setVariable("tasks_url", "http://localhost:8888/task_frontend/");
+        context.setVariable("button", "View all tasks");
+        context.setVariable("show_button", true);
+        context.setVariable("is_friend", false);
+        context.setVariable("application_functionality", functionality);
+        return templateEngine.process("mail/number-of-tasks-in-database", context);
+    }
+
     public String buildTrelloCardEmail(String message) {
         List<String> functionality = new ArrayList<>();
         functionality.add("You can manage your tasks");
